@@ -100,15 +100,13 @@ export const AboutSection: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Header Section with Professional Avatar */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
-          {/* Left Column - Text Content */}
+        {/* Header Section */}
+        <div className="text-center mb-20">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center lg:text-left"
           >
             {/* Enhanced Badge */}
             <motion.div
@@ -155,7 +153,7 @@ export const AboutSection: React.FC = () => {
             </motion.h2>
 
             <motion.p
-              className="text-lg md:text-xl lg:text-2xl text-dev-text-secondary-light dark:text-dev-text-secondary-dark leading-relaxed"
+              className="text-lg md:text-xl lg:text-2xl text-dev-text-secondary-light dark:text-dev-text-secondary-dark leading-relaxed max-w-4xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
@@ -163,102 +161,6 @@ export const AboutSection: React.FC = () => {
               Senior Flutter Developer with 4+ years of experience creating production-ready mobile applications. 
               Creator of LayerX architecture and passionate about clean code, scalable solutions, and performant apps.
             </motion.p>
-          </motion.div>
-
-          {/* Right Column - Professional Avatar */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="relative flex justify-center lg:justify-end"
-          >
-            {/* Background Effects */}
-            <div className="absolute inset-0 -z-10">
-              <motion.div
-                className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-3xl"
-                animate={{ 
-                  scale: [1, 1.3, 1],
-                  rotate: [0, 180, 360]
-                }}
-                transition={{ duration: 10, repeat: Infinity }}
-              />
-              <motion.div
-                className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 rounded-full blur-2xl"
-                animate={{ 
-                  scale: [1.2, 1, 1.2],
-                  rotate: [360, 180, 0]
-                }}
-                transition={{ duration: 8, repeat: Infinity }}
-              />
-            </div>
-
-            {/* Avatar Container */}
-            <motion.div
-              className="relative group"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-            >
-              {/* Glow Effect */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-blue-500/30 via-purple-500/30 to-emerald-500/30 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
-                animate={{ 
-                  scale: [1, 1.05, 1],
-                  rotate: [0, 5, -5, 0]
-                }}
-                transition={{ duration: 4, repeat: Infinity }}
-              />
-              
-              {/* Animated Border */}
-              <motion.div
-                className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500 via-purple-500 to-emerald-500 p-1 -z-10"
-                animate={{ 
-                  rotate: [0, 360]
-                }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-              >
-                <div className="w-full h-full bg-dev-bg-light dark:bg-dev-bg-dark rounded-3xl" />
-              </motion.div>
-
-              {/* Avatar Image */}
-              <motion.div
-                className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-dev-surface-light to-dev-card-light dark:from-dev-surface-dark dark:to-dev-card-dark"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-              >
-                <img
-                  src="/20250611_1436_Modern Portrait Avatar_remix_01jxf5ekpbfrjb1k012xgkaszq.png"
-                  alt="Umair Hashmi - Professional Developer"
-                  className="w-full h-full object-cover object-center"
-                />
-                
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-dev-bg-light/10 via-transparent to-transparent dark:from-dev-bg-dark/10" />
-                
-                {/* Shimmer Effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100"
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: '200%' }}
-                  transition={{ duration: 1.5 }}
-                />
-              </motion.div>
-
-              {/* Professional Badge */}
-              <motion.div
-                className="absolute -bottom-4 -right-4 px-4 py-2 bg-gradient-to-r from-emerald-500 to-blue-500 text-white font-bold rounded-full shadow-lg backdrop-blur-sm border border-white/20"
-                initial={{ opacity: 0, scale: 0, rotate: -45 }}
-                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ delay: 0.8, type: "spring", stiffness: 200 }}
-                whileHover={{ scale: 1.1, rotate: 5 }}
-              >
-                <div className="flex items-center space-x-2">
-                  <Award className="w-4 h-4" />
-                  <span className="text-sm">Expert</span>
-                </div>
-              </motion.div>
-            </motion.div>
           </motion.div>
         </div>
 

@@ -458,7 +458,7 @@ export const HeroSection: React.FC = () => {
                 <div className="w-full h-full bg-dev-bg-light dark:bg-dev-bg-dark rounded-3xl" />
               </motion.div>
 
-              {/* Avatar Image */}
+              {/* Avatar Image - Professional Display */}
               <motion.div
                 className="relative w-80 h-80 sm:w-96 sm:h-96 lg:w-[28rem] lg:h-[28rem] rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-dev-surface-light to-dev-card-light dark:from-dev-surface-dark dark:to-dev-card-dark"
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -468,11 +468,15 @@ export const HeroSection: React.FC = () => {
                 <img
                   src="/20250611_1436_Modern Portrait Avatar_remix_01jxf5ekpbfrjb1k012xgkaszq.png"
                   alt="Umair Hashmi - Flutter Developer"
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-contain object-center"
+                  style={{ 
+                    objectFit: 'contain',
+                    objectPosition: 'center'
+                  }}
                 />
                 
-                {/* Overlay Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-dev-bg-light/20 via-transparent to-transparent dark:from-dev-bg-dark/20" />
+                {/* Subtle Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-dev-bg-light/5 via-transparent to-transparent dark:from-dev-bg-dark/5" />
                 
                 {/* Shimmer Effect */}
                 <motion.div
