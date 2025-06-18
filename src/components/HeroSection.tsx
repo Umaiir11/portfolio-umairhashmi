@@ -144,24 +144,32 @@ export const HeroSection: React.FC = () => {
             className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-base sm:text-lg md:text-xl mb-6"
           >
             {[
-              { icon: Smartphone, text: 'Flutter Expert', colors: ['text-dev-accent-emerald', 'text-dev-accent-blue', 'text-dev-accent-purple'] },
-              { icon: Server, text: 'Full-Stack Engineer', colors: ['text-dev-accent-purple', 'text-dev-accent-orange', 'text-dev-accent-emerald'] },
-              { icon: Zap, text: '60FPS Optimizer', colors: ['text-dev-accent-orange', 'text-dev-accent-emerald', 'text-dev-accent-blue'] }
+              { icon: Smartphone, text: 'Flutter Expert', colors: ['#10b981', '#3b82f6', '#8b5cf6'] },
+              { icon: Server, text: 'Full-Stack Engineer', colors: ['#8b5cf6', '#f97316', '#10b981'] },
+              { icon: Zap, text: '60FPS Optimizer', colors: ['#f97316', '#10b981', '#3b82f6'] }
             ].map((role, index) => (
               <motion.div
                 key={role.text}
-                className="flex items-center bg-dev-card-light/50 dark:bg-dev-card-dark/50 backdrop-blur-sm px-3 sm:px-4 py-2 rounded-full border border-dev-border-light/50 dark:border-dev-border-dark/50 group cursor-pointer"
+                className="flex items-center bg-dev-card-light/60 dark:bg-dev-card-dark/60 backdrop-blur-xl px-3 sm:px-4 py-2 rounded-full border border-dev-border-light/50 dark:border-dev-border-dark/50 group cursor-pointer relative overflow-hidden"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 + index * 0.1 }}
                 whileHover={{ scale: 1.05, y: -2 }}
               >
-                <role.icon className={`w-4 h-4 sm:w-5 sm:h-5 mr-2 transition-colors duration-500 group-hover:${role.colors[0]}`} />
+                {/* Shimmer Effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: '200%' }}
+                  transition={{ duration: 0.8 }}
+                />
+                
+                <role.icon className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-dev-accent-blue group-hover:text-dev-accent-emerald transition-colors duration-300" />
                 <motion.span 
-                  className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark font-medium text-sm sm:text-base transition-colors duration-500"
+                  className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark font-medium text-sm sm:text-base relative z-10"
                   whileHover={{
-                    color: ['#10b981', '#3b82f6', '#8b5cf6', '#f97316'],
-                    transition: { duration: 0.5, repeat: Infinity }
+                    color: role.colors,
+                    transition: { duration: 1.5, repeat: Infinity }
                   }}
                 >
                   {role.text}
@@ -191,7 +199,14 @@ export const HeroSection: React.FC = () => {
                 <span className="text-sm sm:text-base">Upwork Freelancer</span>
                 <div className="flex items-center space-x-1">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 text-yellow-500 fill-current" />
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.7 + i * 0.1 }}
+                    >
+                      <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                    </motion.div>
                   ))}
                 </div>
                 <span className="text-green-500 font-bold">5.0</span>
@@ -331,13 +346,21 @@ export const HeroSection: React.FC = () => {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`relative p-3 sm:p-4 rounded-2xl sm:rounded-full ${link.bgColor} border border-dev-border-light dark:border-dev-border-dark backdrop-blur-sm transition-all duration-300 ${link.color} group`}
+                  className={`relative p-3 sm:p-4 rounded-2xl sm:rounded-full ${link.bgColor} border border-dev-border-light dark:border-dev-border-dark backdrop-blur-sm transition-all duration-300 ${link.color} group overflow-hidden`}
                   whileHover={{ scale: 1.1, y: -3, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.1 + index * 0.1 }}
                 >
+                  {/* Shimmer Effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: '200%' }}
+                    transition={{ duration: 0.8 }}
+                  />
+                  
                   <link.icon className="w-5 h-5 sm:w-6 sm:h-6 relative z-10" />
                   
                   {/* Hover Glow */}
