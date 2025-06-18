@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MessageCircle, Github, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { MessageCircle, Github, Linkedin, Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 export const ContactSection: React.FC = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
   const socialLinks = [
     {
       icon: MessageCircle,
@@ -30,6 +40,46 @@ export const ContactSection: React.FC = () => {
   const whatsappMessage = encodeURIComponent(
     "👋 Hey, this is Umair Hashmi – Flutter & Full-Stack Developer. How can I help you build your next big idea?"
   );
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      // Initialize EmailJS with your public key
+      emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your actual public key
+
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'iam.umairimran@gmail.com'
+      };
+
+      await emailjs.send(
+        'YOUR_SERVICE_ID', // Replace with your service ID
+        'YOUR_TEMPLATE_ID', // Replace with your template ID
+        templateParams
+      );
+
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      console.error('Email send error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section id="contact" className="py-24 bg-dev-bg-light dark:bg-dev-bg-dark">
@@ -79,7 +129,7 @@ export const ContactSection: React.FC = () => {
               <div className="flex items-center">
                 <Mail className="w-5 h-5 text-dev-accent-blue mr-3" />
                 <span className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark">
-                  Available via WhatsApp & LinkedIn
+                  iam.umairimran@gmail.com
                 </span>
               </div>
               <div className="flex items-center">
@@ -102,52 +152,188 @@ export const ContactSection: React.FC = () => {
               <MessageCircle className="w-5 h-5 mr-2" />
               Start a Conversation
             </motion.a>
+
+            {/* Social Links */}
+            <div className="space-y-4">
+              <h4 className="text-lg font-semibold text-dev-text-primary-light dark:text-dev-text-primary-dark">
+                Connect With Me
+              </h4>
+              {socialLinks.map((link, index) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <motion.div
+                    className="p-4 bg-dev-card-light dark:bg-dev-card-dark rounded-2xl border border-dev-border-light dark:border-dev-border-dark hover:shadow-lg transition-all duration-300"
+                    whileHover={{ y: -3, scale: 1.02 }}
+                  >
+                    <div className="flex items-start space-x-4">
+                      <div className={`${link.color} flex-shrink-0`}>
+                        <link.icon className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-1">
+                          {link.label}
+                        </h4>
+                        <p className="text-sm text-dev-text-secondary-light dark:text-dev-text-secondary-dark">
+                          {link.description}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.a>
+              ))}
+            </div>
           </motion.div>
 
-          {/* Social Links */}
+          {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="bg-dev-card-light dark:bg-dev-card-dark rounded-2xl border border-dev-border-light dark:border-dev-border-dark p-8 shadow-lg"
           >
             <h3 className="text-2xl font-semibold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-6">
-              Connect With Me
+              Send Me a Message
             </h3>
             
-            {socialLinks.map((link, index) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block"
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                >
+                  <label htmlFor="name" className="block text-sm font-medium text-dev-text-primary-light dark:text-dev-text-primary-dark mb-2">
+                    Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 bg-dev-surface-light dark:bg-dev-surface-dark border border-dev-border-light dark:border-dev-border-dark rounded-xl text-dev-text-primary-light dark:text-dev-text-primary-dark placeholder-dev-text-secondary-light dark:placeholder-dev-text-secondary-dark focus:outline-none focus:ring-2 focus:ring-dev-accent-blue/50 transition-all duration-300"
+                    placeholder="Your name"
+                  />
+                </motion.div>
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <label htmlFor="email" className="block text-sm font-medium text-dev-text-primary-light dark:text-dev-text-primary-dark mb-2">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 bg-dev-surface-light dark:bg-dev-surface-dark border border-dev-border-light dark:border-dev-border-dark rounded-xl text-dev-text-primary-light dark:text-dev-text-primary-dark placeholder-dev-text-secondary-light dark:placeholder-dev-text-secondary-dark focus:outline-none focus:ring-2 focus:ring-dev-accent-blue/50 transition-all duration-300"
+                    placeholder="your.email@example.com"
+                  />
+                </motion.div>
+              </div>
+              
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
               >
+                <label htmlFor="subject" className="block text-sm font-medium text-dev-text-primary-light dark:text-dev-text-primary-dark mb-2">
+                  Subject *
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-3 bg-dev-surface-light dark:bg-dev-surface-dark border border-dev-border-light dark:border-dev-border-dark rounded-xl text-dev-text-primary-light dark:text-dev-text-primary-dark placeholder-dev-text-secondary-light dark:placeholder-dev-text-secondary-dark focus:outline-none focus:ring-2 focus:ring-dev-accent-blue/50 transition-all duration-300"
+                  placeholder="Project inquiry, collaboration, etc."
+                />
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+              >
+                <label htmlFor="message" className="block text-sm font-medium text-dev-text-primary-light dark:text-dev-text-primary-dark mb-2">
+                  Message *
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows={5}
+                  className="w-full px-4 py-3 bg-dev-surface-light dark:bg-dev-surface-dark border border-dev-border-light dark:border-dev-border-dark rounded-xl text-dev-text-primary-light dark:text-dev-text-primary-dark placeholder-dev-text-secondary-light dark:placeholder-dev-text-secondary-dark focus:outline-none focus:ring-2 focus:ring-dev-accent-blue/50 transition-all duration-300 resize-none"
+                  placeholder="Tell me about your project, requirements, timeline, etc."
+                />
+              </motion.div>
+              
+              {/* Submit Status */}
+              {submitStatus !== 'idle' && (
                 <motion.div
-                  className="p-6 bg-dev-card-light dark:bg-dev-card-dark rounded-2xl border border-dev-border-light dark:border-dev-border-dark hover:shadow-lg transition-all duration-300"
-                  whileHover={{ y: -3, scale: 1.02 }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`flex items-center p-4 rounded-xl ${
+                    submitStatus === 'success' 
+                      ? 'bg-green-500/10 text-green-500 border border-green-500/20' 
+                      : 'bg-red-500/10 text-red-500 border border-red-500/20'
+                  }`}
                 >
-                  <div className="flex items-start space-x-4">
-                    <div className={`${link.color} flex-shrink-0`}>
-                      <link.icon className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-1">
-                        {link.label}
-                      </h4>
-                      <p className="text-sm text-dev-text-secondary-light dark:text-dev-text-secondary-dark">
-                        {link.description}
-                      </p>
-                    </div>
-                  </div>
+                  {submitStatus === 'success' ? (
+                    <CheckCircle className="w-5 h-5 mr-2" />
+                  ) : (
+                    <AlertCircle className="w-5 h-5 mr-2" />
+                  )}
+                  <span className="text-sm">
+                    {submitStatus === 'success' 
+                      ? 'Message sent successfully! I\'ll get back to you soon.' 
+                      : 'Failed to send message. Please try again or contact me directly.'}
+                  </span>
                 </motion.div>
-              </motion.a>
-            ))}
+              )}
+              
+              <motion.button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full flex items-center justify-center px-8 py-4 bg-gradient-to-r from-dev-accent-blue to-dev-accent-emerald text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                whileHover={{ scale: isSubmitting ? 1 : 1.02, y: isSubmitting ? 0 : -2 }}
+                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                {isSubmitting ? (
+                  <motion.div
+                    className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full mr-2"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                  />
+                ) : (
+                  <Send className="w-5 h-5 mr-2" />
+                )}
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </motion.button>
+            </form>
           </motion.div>
         </div>
 

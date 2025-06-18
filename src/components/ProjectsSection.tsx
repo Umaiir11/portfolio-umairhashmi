@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Smartphone, Eye, Filter, Search, Star, TrendingUp } from 'lucide-react';
+import { ProjectModal } from './ProjectModal';
 
 export const ProjectsSection: React.FC = () => {
-  const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const [selectedProject, setSelectedProject] = useState<any>(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const projects = [
     { 
@@ -219,6 +221,16 @@ export const ProjectsSection: React.FC = () => {
     return icons[category] || '📱';
   };
 
+  const handleProjectClick = (project: any) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
+
   return (
     <section id="projects" className="py-24 bg-gradient-to-br from-dev-surface-light via-dev-bg-light to-dev-surface-light dark:from-dev-surface-dark dark:via-dev-bg-dark dark:to-dev-surface-dark relative overflow-hidden">
       {/* Animated Background */}
@@ -338,7 +350,7 @@ export const ProjectsSection: React.FC = () => {
                   stiffness: 100
                 }}
                 className="group cursor-pointer"
-                onClick={() => setSelectedProject(selectedProject === index ? null : index)}
+                onClick={() => handleProjectClick(project)}
               >
                 <motion.div
                   className="relative h-full p-6 bg-dev-card-light/80 dark:bg-dev-card-dark/80 backdrop-blur-sm rounded-2xl border border-dev-border-light dark:border-dev-border-dark hover:shadow-2xl transition-all duration-500 overflow-hidden"
@@ -389,7 +401,7 @@ export const ProjectsSection: React.FC = () => {
                         </div>
                       </div>
                       <motion.div
-                        animate={{ rotate: selectedProject === index ? 180 : 0 }}
+                        whileHover={{ scale: 1.2, rotate: 15 }}
                         transition={{ duration: 0.3 }}
                       >
                         <Eye className="w-5 h-5 text-dev-text-secondary-light dark:text-dev-text-secondary-dark group-hover:text-dev-accent-blue transition-colors" />
@@ -409,46 +421,17 @@ export const ProjectsSection: React.FC = () => {
                       </p>
                     </div>
                     
-                    <AnimatePresence>
-                      {selectedProject === index && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="border-t border-dev-border-light dark:border-dev-border-dark pt-4 mt-4"
-                        >
-                          <div className="space-y-3">
-                            <div>
-                              <p className="text-xs text-dev-text-secondary-light dark:text-dev-text-secondary-dark mb-2 font-medium">
-                                Key Features:
-                              </p>
-                              <div className="flex flex-wrap gap-2">
-                                {project.features.map((feature) => (
-                                  <span
-                                    key={feature}
-                                    className="px-2 py-1 bg-dev-accent-emerald/10 text-dev-accent-emerald text-xs rounded-full"
-                                  >
-                                    {feature}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                            <div className="flex items-center justify-between">
-                              <span className="text-sm text-dev-text-secondary-light dark:text-dev-text-secondary-dark">
-                                Production Flutter App
-                              </span>
-                              <div className="flex items-center">
-                                <div className="w-2 h-2 bg-dev-accent-emerald rounded-full mr-2 animate-pulse" />
-                                <span className="text-sm text-dev-accent-emerald font-medium">
-                                  {project.status}
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                    <div className="flex items-center justify-between mt-auto">
+                      <span className="text-sm text-dev-text-secondary-light dark:text-dev-text-secondary-dark">
+                        Click for details
+                      </span>
+                      <div className="flex items-center">
+                        <div className="w-2 h-2 bg-dev-accent-emerald rounded-full mr-2 animate-pulse" />
+                        <span className="text-sm text-dev-accent-emerald font-medium">
+                          {project.status}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
               </motion.div>
@@ -499,6 +482,13 @@ export const ProjectsSection: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Project Modal */}
+      <ProjectModal 
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      />
     </section>
   );
 };

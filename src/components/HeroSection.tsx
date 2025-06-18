@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, MessageCircle, ArrowRight, Code, Smartphone, Server, Sparkles, Zap } from 'lucide-react';
+import { Github, Linkedin, MessageCircle, ArrowRight, Code, Smartphone, Server, Sparkles, Zap, Star, Award } from 'lucide-react';
 import { FloatingElements } from './FloatingElements';
 
 export const HeroSection: React.FC = () => {
@@ -81,7 +81,7 @@ export const HeroSection: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="text-6xl md:text-8xl font-black mb-4 relative"
+              className="text-4xl sm:text-6xl md:text-8xl font-black mb-4 relative"
             >
               <motion.span
                 className="bg-gradient-to-r from-dev-text-primary-light via-dev-accent-blue to-dev-accent-emerald dark:from-dev-text-primary-dark dark:via-dev-accent-blue dark:to-dev-accent-emerald bg-clip-text text-transparent"
@@ -136,45 +136,80 @@ export const HeroSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Animated Role Tags */}
+          {/* Enhanced Animated Role Tags */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="flex flex-wrap justify-center items-center gap-6 text-lg md:text-xl mb-6"
+            className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-base sm:text-lg md:text-xl mb-6"
           >
             {[
-              { icon: Smartphone, text: 'Flutter Expert', color: 'text-dev-accent-emerald' },
-              { icon: Server, text: 'Full-Stack Engineer', color: 'text-dev-accent-purple' },
-              { icon: Zap, text: '60FPS Optimizer', color: 'text-dev-accent-orange' }
+              { icon: Smartphone, text: 'Flutter Expert', colors: ['text-dev-accent-emerald', 'text-dev-accent-blue', 'text-dev-accent-purple'] },
+              { icon: Server, text: 'Full-Stack Engineer', colors: ['text-dev-accent-purple', 'text-dev-accent-orange', 'text-dev-accent-emerald'] },
+              { icon: Zap, text: '60FPS Optimizer', colors: ['text-dev-accent-orange', 'text-dev-accent-emerald', 'text-dev-accent-blue'] }
             ].map((role, index) => (
               <motion.div
                 key={role.text}
-                className="flex items-center bg-dev-card-light/50 dark:bg-dev-card-dark/50 backdrop-blur-sm px-4 py-2 rounded-full border border-dev-border-light/50 dark:border-dev-border-dark/50"
+                className="flex items-center bg-dev-card-light/50 dark:bg-dev-card-dark/50 backdrop-blur-sm px-3 sm:px-4 py-2 rounded-full border border-dev-border-light/50 dark:border-dev-border-dark/50 group cursor-pointer"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 + index * 0.1 }}
                 whileHover={{ scale: 1.05, y: -2 }}
               >
-                <role.icon className={`w-5 h-5 mr-2 ${role.color}`} />
-                <span className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark font-medium">
+                <role.icon className={`w-4 h-4 sm:w-5 sm:h-5 mr-2 transition-colors duration-500 group-hover:${role.colors[0]}`} />
+                <motion.span 
+                  className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark font-medium text-sm sm:text-base transition-colors duration-500"
+                  whileHover={{
+                    color: ['#10b981', '#3b82f6', '#8b5cf6', '#f97316'],
+                    transition: { duration: 0.5, repeat: Infinity }
+                  }}
+                >
                   {role.text}
-                </span>
+                </motion.span>
               </motion.div>
             ))}
+          </motion.div>
+
+          {/* Upwork Badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.6, duration: 0.6, type: "spring" }}
+            className="relative inline-block mb-6"
+          >
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-full blur-lg"
+              animate={{ 
+                scale: [1, 1.1, 1],
+                opacity: [0.5, 0.8, 0.5]
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+            />
+            <div className="relative px-6 py-3 rounded-full bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/30 backdrop-blur-sm">
+              <div className="flex items-center space-x-3 text-dev-text-primary-light dark:text-dev-text-primary-dark font-bold">
+                <Award className="w-5 h-5 text-green-500" />
+                <span className="text-sm sm:text-base">Upwork Freelancer</span>
+                <div className="flex items-center space-x-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 text-yellow-500 fill-current" />
+                  ))}
+                </div>
+                <span className="text-green-500 font-bold">5.0</span>
+              </div>
+            </div>
           </motion.div>
 
           {/* Enhanced Tagline */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
+            transition={{ delay: 0.7, duration: 0.8 }}
             className="relative"
           >
-            <p className="text-xl md:text-2xl max-w-4xl mx-auto text-dev-text-secondary-light dark:text-dev-text-secondary-dark leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl max-w-4xl mx-auto text-dev-text-secondary-light dark:text-dev-text-secondary-dark leading-relaxed px-4">
               Engineering{' '}
               <motion.span 
-                className="text-dev-accent-blue font-bold relative"
+                className="text-dev-accent-blue font-bold relative cursor-pointer"
                 whileHover={{ scale: 1.1 }}
               >
                 future-ready Flutter apps
@@ -187,21 +222,21 @@ export const HeroSection: React.FC = () => {
               </motion.span>
               {' '}using{' '}
               <motion.span 
-                className="text-dev-accent-emerald font-bold"
+                className="text-dev-accent-emerald font-bold cursor-pointer"
                 whileHover={{ scale: 1.1 }}
               >
                 clean architecture
               </motion.span>
               ,{' '}
               <motion.span 
-                className="text-dev-accent-purple font-bold"
+                className="text-dev-accent-purple font-bold cursor-pointer"
                 whileHover={{ scale: 1.1 }}
               >
                 optimized logic
               </motion.span>
               , and{' '}
               <motion.span 
-                className="text-dev-accent-orange font-bold"
+                className="text-dev-accent-orange font-bold cursor-pointer"
                 whileHover={{ scale: 1.1 }}
               >
                 scalable backend APIs
@@ -225,39 +260,41 @@ export const HeroSection: React.FC = () => {
               }}
               transition={{ duration: 3, repeat: Infinity }}
             />
-            <div className="relative px-8 py-4 rounded-full bg-gradient-to-r from-dev-accent-emerald/10 to-dev-accent-blue/10 border border-dev-accent-emerald/30 backdrop-blur-sm">
-              <div className="flex items-center space-x-6 text-dev-text-primary-light dark:text-dev-text-primary-dark font-bold">
+            <div className="relative px-6 sm:px-8 py-4 rounded-full bg-gradient-to-r from-dev-accent-emerald/10 to-dev-accent-blue/10 border border-dev-accent-emerald/30 backdrop-blur-sm">
+              <div className="flex items-center space-x-4 sm:space-x-6 text-dev-text-primary-light dark:text-dev-text-primary-dark font-bold">
                 <div className="text-center">
-                  <div className="text-2xl">4+</div>
+                  <div className="text-xl sm:text-2xl">4+</div>
                   <div className="text-xs opacity-70">Years</div>
                 </div>
                 <div className="w-px h-8 bg-dev-accent-emerald/30" />
                 <div className="text-center">
-                  <div className="text-2xl">20+</div>
+                  <div className="text-xl sm:text-2xl">20+</div>
                   <div className="text-xs opacity-70">Apps</div>
                 </div>
                 <div className="w-px h-8 bg-dev-accent-emerald/30" />
                 <div className="text-center">
-                  <div className="text-2xl">2.0</div>
+                  <div className="text-xl sm:text-2xl">2.0</div>
                   <div className="text-xs opacity-70">LayerX</div>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* Enhanced CTA Section */}
+          {/* Enhanced CTA Section - Mobile Optimized */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.8 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8"
+            className="flex flex-col items-center gap-6 pt-8"
           >
-            {/* Primary CTA */}
+            {/* Primary CTA - Mobile Optimized */}
             <motion.a
-              href="https://wa.me/923184431218"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-dev-accent-emerald to-dev-accent-blue text-white font-bold rounded-full shadow-2xl overflow-hidden"
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="group relative inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-dev-accent-emerald to-dev-accent-blue text-white font-bold rounded-2xl sm:rounded-full shadow-2xl overflow-hidden w-full sm:w-auto max-w-xs sm:max-w-none"
               whileHover={{ scale: 1.05, y: -3 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -265,9 +302,9 @@ export const HeroSection: React.FC = () => {
                 className="absolute inset-0 bg-gradient-to-r from-dev-accent-blue to-dev-accent-emerald opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 initial={false}
               />
-              <div className="relative flex items-center">
+              <div className="relative flex items-center justify-center w-full sm:w-auto">
                 <MessageCircle className="w-5 h-5 mr-2" />
-                Hire Me Now
+                <span className="text-sm sm:text-base">Hire Me Now</span>
                 <motion.div
                   className="ml-2"
                   animate={{ x: [0, 5, 0] }}
@@ -286,26 +323,26 @@ export const HeroSection: React.FC = () => {
               />
             </motion.a>
 
-            {/* Social Links */}
-            <div className="flex gap-4">
+            {/* Social Links - Mobile Optimized */}
+            <div className="flex gap-3 sm:gap-4">
               {socialLinks.slice(1).map((link, index) => (
                 <motion.a
                   key={link.label}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`relative p-4 rounded-full ${link.bgColor} border border-dev-border-light dark:border-dev-border-dark backdrop-blur-sm transition-all duration-300 ${link.color} group`}
+                  className={`relative p-3 sm:p-4 rounded-2xl sm:rounded-full ${link.bgColor} border border-dev-border-light dark:border-dev-border-dark backdrop-blur-sm transition-all duration-300 ${link.color} group`}
                   whileHover={{ scale: 1.1, y: -3, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.1 + index * 0.1 }}
                 >
-                  <link.icon className="w-6 h-6 relative z-10" />
+                  <link.icon className="w-5 h-5 sm:w-6 sm:h-6 relative z-10" />
                   
                   {/* Hover Glow */}
                   <motion.div
-                    className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 blur-md"
+                    className="absolute inset-0 rounded-2xl sm:rounded-full opacity-0 group-hover:opacity-100 blur-md"
                     style={{ backgroundColor: link.color.includes('blue') ? '#3b82f6' : '#6b7280' }}
                     initial={false}
                     transition={{ duration: 0.3 }}
