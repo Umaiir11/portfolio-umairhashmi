@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Package, ArrowRight, Code, Database, Layers, Cpu, FileText, Settings, Zap, CheckCircle, ExternalLink, Download } from 'lucide-react';
+import { Package, ArrowRight, Code, Database, Layers, Cpu, FileText, Settings, Zap, CheckCircle, ExternalLink, Download, Star, Sparkles, Award } from 'lucide-react';
 
 export const LayerXSection: React.FC = () => {
   const [activeLayer, setActiveLayer] = useState<number | null>(null);
@@ -12,6 +12,7 @@ export const LayerXSection: React.FC = () => {
       icon: Layers,
       description: 'UI Components & Widgets',
       color: 'from-blue-500 to-cyan-500',
+      bgGradient: 'from-blue-500/10 to-cyan-500/10',
       details: 'Stateless/Stateful widgets, Custom painters, Responsive design with flutter_screenutil',
       files: ['home_view.dart', 'profile_view.dart', 'settings_view.dart'],
       code: `class HomeView extends StatelessWidget {
@@ -32,6 +33,7 @@ export const LayerXSection: React.FC = () => {
       icon: Cpu,
       description: 'Business Logic & State Management',
       color: 'from-emerald-500 to-teal-500',
+      bgGradient: 'from-emerald-500/10 to-teal-500/10',
       details: 'GetX controllers, State management, Business logic separation',
       files: ['home_controller.dart', 'auth_controller.dart', 'profile_controller.dart'],
       code: `class HomeController extends GetxController {
@@ -64,6 +66,7 @@ export const LayerXSection: React.FC = () => {
       icon: Code,
       description: 'API Integration & Data Processing',
       color: 'from-purple-500 to-indigo-500',
+      bgGradient: 'from-purple-500/10 to-indigo-500/10',
       details: 'HTTP services, Data transformation, Error handling, Response parsing',
       files: ['home_service.dart', 'auth_service.dart', 'https_service.dart'],
       code: `class HomeService {
@@ -93,6 +96,7 @@ export const LayerXSection: React.FC = () => {
       icon: Database,
       description: 'Data Source Management',
       color: 'from-orange-500 to-red-500',
+      bgGradient: 'from-orange-500/10 to-red-500/10',
       details: 'Local storage, Remote APIs, Caching strategies, Data synchronization',
       files: ['user_repository.dart', 'auth_repository.dart', 'local_storage.dart'],
       code: `class UserRepository {
@@ -117,39 +121,93 @@ export const LayerXSection: React.FC = () => {
     {
       icon: Settings,
       title: 'Auto-Generated Structure',
-      description: 'Complete MVVM directory structure with GetX integration'
+      description: 'Complete MVVM directory structure with GetX integration',
+      gradient: 'from-blue-500 to-cyan-500'
     },
     {
       icon: Zap,
       title: 'Built-in Services',
-      description: 'HttpsService, SharedPreferencesHelper, JsonExtractor included'
+      description: 'HttpsService, SharedPreferencesHelper, JsonExtractor included',
+      gradient: 'from-emerald-500 to-teal-500'
     },
     {
       icon: FileText,
       title: 'Response Models',
-      description: 'Pre-configured API response and body models'
+      description: 'Pre-configured API response and body models',
+      gradient: 'from-purple-500 to-indigo-500'
     },
     {
       icon: Code,
       title: 'Clean Architecture',
-      description: 'SOLID principles with clear separation of concerns'
+      description: 'SOLID principles with clear separation of concerns',
+      gradient: 'from-orange-500 to-red-500'
     }
   ];
 
   const stats = [
-    { label: 'Downloads', value: '167+', icon: Download },
-    { label: 'Pub Points', value: '160', icon: CheckCircle },
-    { label: 'Likes', value: '20+', icon: '❤️' },
-    { label: 'Version', value: '2.0.0', icon: Package }
+    { label: 'Downloads', value: '167+', icon: Download, color: 'text-blue-500' },
+    { label: 'Pub Points', value: '160', icon: CheckCircle, color: 'text-emerald-500' },
+    { label: 'Likes', value: '20+', icon: '❤️', color: 'text-red-500' },
+    { label: 'Version', value: '2.0.0', icon: Package, color: 'text-purple-500' }
   ];
 
   return (
-    <section id="layerx" className="py-24 bg-gradient-to-br from-dev-bg-light via-dev-surface-light to-dev-bg-light dark:from-dev-bg-dark dark:via-dev-surface-dark dark:to-dev-bg-dark overflow-hidden relative">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.4'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
+    <section id="layerx" className="py-32 bg-gradient-to-br from-dev-bg-light via-dev-surface-light to-dev-bg-light dark:from-dev-bg-dark dark:via-dev-surface-dark dark:to-dev-bg-dark overflow-hidden relative">
+      {/* Enhanced Background Effects */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Animated Gradient Orbs */}
+        {Array.from({ length: 8 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-96 h-96 rounded-full opacity-10 blur-3xl"
+            style={{
+              background: `radial-gradient(circle, ${
+                ['#3b82f6', '#10b981', '#8b5cf6', '#f97316', '#ef4444', '#06b6d4', '#8b5cf6', '#f59e0b'][i]
+              }, transparent)`
+            }}
+            initial={{
+              x: Math.random() * window.innerWidth,
+              y: Math.random() * window.innerHeight,
+            }}
+            animate={{
+              x: Math.random() * window.innerWidth,
+              y: Math.random() * window.innerHeight,
+              scale: [1, 1.3, 1],
+              opacity: [0.05, 0.2, 0.05]
+            }}
+            transition={{
+              duration: 20 + Math.random() * 10,
+              repeat: Infinity,
+              delay: i * 2
+            }}
+          />
+        ))}
+
+        {/* Floating Code Elements */}
+        {Array.from({ length: 15 }).map((_, i) => (
+          <motion.div
+            key={`code-${i}`}
+            className="absolute text-xs font-mono text-blue-400/20 dark:text-blue-400/30"
+            initial={{
+              x: Math.random() * window.innerWidth,
+              y: Math.random() * window.innerHeight,
+              opacity: 0
+            }}
+            animate={{
+              x: Math.random() * window.innerWidth,
+              y: Math.random() * window.innerHeight,
+              opacity: [0, 0.5, 0],
+              rotate: [0, 360]
+            }}
+            transition={{
+              duration: 15 + Math.random() * 10,
+              repeat: Infinity,
+              delay: i * 1
+            }}
+          >
+            {['class', 'extends', 'Widget', 'GetX', 'Controller', 'Service', 'Repository', 'Model'][i % 8]}
+          </motion.div>
+        ))}
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -162,17 +220,29 @@ export const LayerXSection: React.FC = () => {
           className="text-center mb-20"
         >
           <motion.div
-            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-dev-accent-blue/10 to-dev-accent-emerald/10 rounded-full border border-dev-accent-blue/30 mb-8 backdrop-blur-sm"
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 backdrop-blur-xl rounded-full border border-blue-500/20 mb-8 relative overflow-hidden"
             initial={{ scale: 0.8, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
             whileHover={{ scale: 1.05 }}
           >
-            <Package className="w-5 h-5 mr-3 text-dev-accent-blue" />
-            <span className="text-dev-accent-blue font-bold">Open Source Package</span>
+            {/* Shimmer Effect */}
             <motion.div
-              className="ml-3 w-2 h-2 bg-dev-accent-emerald rounded-full"
-              animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"
+              initial={{ x: '-100%' }}
+              animate={{ x: '200%' }}
+              transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
+            />
+            
+            <Package className="w-6 h-6 mr-3 text-blue-500" />
+            <span className="text-blue-500 font-bold text-lg">Open Source Innovation</span>
+            <motion.div
+              className="ml-3 w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+              animate={{ 
+                scale: [1, 1.5, 1], 
+                opacity: [1, 0.5, 1],
+                rotate: [0, 180, 360]
+              }}
               transition={{ duration: 2, repeat: Infinity }}
             />
           </motion.div>
@@ -183,7 +253,7 @@ export const LayerXSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <span className="bg-gradient-to-r from-dev-accent-blue via-dev-accent-emerald to-dev-accent-purple bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
               LayerX
             </span>
             <br />
@@ -193,16 +263,16 @@ export const LayerXSection: React.FC = () => {
           </motion.h2>
 
           <motion.p
-            className="text-xl md:text-2xl text-dev-text-secondary-light dark:text-dev-text-secondary-dark max-w-4xl mx-auto mb-8 leading-relaxed"
+            className="text-xl md:text-2xl text-dev-text-secondary-light dark:text-dev-text-secondary-dark max-w-4xl mx-auto mb-12 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            A production-optimized Flutter architecture that I created to solve real-world development challenges. 
+            A production-optimized Flutter architecture that revolutionizes development workflows. 
             Clean, scalable, and maintainable code structure for enterprise applications.
           </motion.p>
 
-          {/* Stats Row */}
+          {/* Enhanced Stats Row */}
           <motion.div
             className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12"
             initial={{ opacity: 0, y: 30 }}
@@ -212,16 +282,40 @@ export const LayerXSection: React.FC = () => {
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
-                className="bg-dev-card-light/50 dark:bg-dev-card-dark/50 backdrop-blur-sm p-6 rounded-2xl border border-dev-border-light/50 dark:border-dev-border-dark/50"
+                className="relative group"
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.6 + index * 0.1, type: "spring" }}
                 whileHover={{ scale: 1.05, y: -5 }}
               >
-                <div className="text-3xl font-bold text-dev-accent-blue mb-2">{stat.value}</div>
-                <div className="text-sm text-dev-text-secondary-light dark:text-dev-text-secondary-dark font-medium">
-                  {stat.label}
-                </div>
+                <motion.div
+                  className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl p-6 lg:p-8 rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-4xl transition-all duration-500 relative overflow-hidden"
+                  whileHover={{ rotateY: 5, rotateX: 5 }}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  {/* Shimmer Effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100"
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: '200%' }}
+                    transition={{ duration: 1 }}
+                  />
+                  
+                  {/* Glow Effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"
+                    initial={false}
+                  />
+                  
+                  <div className="relative z-10">
+                    <div className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm lg:text-base text-dev-text-secondary-light dark:text-dev-text-secondary-dark font-medium">
+                      {stat.label}
+                    </div>
+                  </div>
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
@@ -230,7 +324,7 @@ export const LayerXSection: React.FC = () => {
             href="https://pub.dev/packages/layerx_generator"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-dev-accent-blue to-dev-accent-emerald text-white font-bold rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 relative overflow-hidden"
+            className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 relative overflow-hidden"
             whileHover={{ scale: 1.05, y: -3 }}
             whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0, y: 20 }}
@@ -252,8 +346,8 @@ export const LayerXSection: React.FC = () => {
           </motion.a>
         </motion.div>
 
-        {/* Architecture Flow Diagram */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-20">
+        {/* Architecture Flow & Features */}
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 items-start mb-20">
           {/* Interactive Architecture Layers */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -262,17 +356,17 @@ export const LayerXSection: React.FC = () => {
             viewport={{ once: true }}
             className="relative"
           >
-            <h3 className="text-3xl font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-8 text-center">
+            <h3 className="text-3xl lg:text-4xl font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-8 text-center">
               Architecture Flow
             </h3>
             
             <div className="space-y-6 relative">
               {/* Connection Lines */}
-              <svg className="absolute left-6 top-16 w-0.5 h-full z-0" style={{ height: 'calc(100% - 4rem)' }}>
+              <svg className="absolute left-8 top-20 w-0.5 h-full z-0" style={{ height: 'calc(100% - 5rem)' }}>
                 <motion.line
                   x1="0" y1="0" x2="0" y2="100%"
                   stroke="url(#gradient)"
-                  strokeWidth="2"
+                  strokeWidth="3"
                   initial={{ pathLength: 0 }}
                   whileInView={{ pathLength: 1 }}
                   transition={{ duration: 2, delay: 1 }}
@@ -280,8 +374,9 @@ export const LayerXSection: React.FC = () => {
                 <defs>
                   <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
                     <stop offset="0%" stopColor="#3b82f6" />
-                    <stop offset="50%" stopColor="#10b981" />
-                    <stop offset="100%" stopColor="#8b5cf6" />
+                    <stop offset="33%" stopColor="#10b981" />
+                    <stop offset="66%" stopColor="#8b5cf6" />
+                    <stop offset="100%" stopColor="#f97316" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -296,93 +391,114 @@ export const LayerXSection: React.FC = () => {
                   className="relative z-10"
                 >
                   <motion.div
-                    className={`group cursor-pointer p-6 bg-dev-card-light/80 dark:bg-dev-card-dark/80 backdrop-blur-sm rounded-2xl border border-dev-border-light dark:border-dev-border-dark shadow-lg hover:shadow-2xl transition-all duration-300 ${
-                      activeLayer === index ? 'ring-2 ring-dev-accent-blue shadow-2xl' : ''
+                    className={`group cursor-pointer p-6 lg:p-8 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-4xl transition-all duration-500 overflow-hidden ${
+                      activeLayer === index ? 'ring-2 ring-blue-500 shadow-4xl' : ''
                     }`}
-                    whileHover={{ scale: 1.02, x: 10 }}
+                    whileHover={{ scale: 1.02, x: 10, rotateY: 5 }}
                     onClick={() => setActiveLayer(activeLayer === index ? null : index)}
+                    style={{ transformStyle: 'preserve-3d' }}
                   >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${layer.color} flex items-center justify-center mr-4 shadow-lg`}>
-                          <layer.icon className="w-7 h-7 text-white" />
-                        </div>
-                        <div>
-                          <h4 className="text-xl font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-1">
-                            {layer.name}
-                          </h4>
-                          <p className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark">
-                            {layer.description}
-                          </p>
-                        </div>
-                      </div>
-                      <motion.div
-                        animate={{ rotate: activeLayer === index ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <ArrowRight className="w-5 h-5 text-dev-text-secondary-light dark:text-dev-text-secondary-dark" />
-                      </motion.div>
-                    </div>
+                    {/* Background Gradient */}
+                    <motion.div
+                      className={`absolute inset-0 bg-gradient-to-br ${layer.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                      initial={false}
+                    />
                     
-                    <AnimatePresence>
-                      {activeLayer === index && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="mt-6 pt-6 border-t border-dev-border-light dark:border-dev-border-dark"
-                        >
-                          <p className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark mb-4">
-                            {layer.details}
-                          </p>
-                          <div className="flex flex-wrap gap-2 mb-4">
-                            {layer.files.map((file) => (
-                              <span
-                                key={file}
-                                className="px-3 py-1 bg-dev-accent-blue/10 text-dev-accent-blue text-xs font-mono rounded-full"
-                              >
-                                {file}
-                              </span>
-                            ))}
-                          </div>
-                          <motion.button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setShowCodeExample(!showCodeExample);
-                            }}
-                            className="text-dev-accent-blue hover:text-dev-accent-emerald font-medium text-sm flex items-center"
-                            whileHover={{ x: 5 }}
+                    {/* Shimmer Effect */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100"
+                      initial={{ x: '-100%' }}
+                      whileHover={{ x: '200%' }}
+                      transition={{ duration: 1.2 }}
+                    />
+                    
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                          <motion.div 
+                            className={`w-16 h-16 lg:w-20 lg:h-20 rounded-2xl bg-gradient-to-r ${layer.color} flex items-center justify-center mr-4 lg:mr-6 shadow-2xl`}
+                            whileHover={{ rotate: 360, scale: 1.1 }}
+                            transition={{ duration: 0.8, type: "spring" }}
                           >
-                            View Code Example
-                            <Code className="w-4 h-4 ml-1" />
-                          </motion.button>
+                            <layer.icon className="w-8 h-8 lg:w-10 lg:h-10 text-white" />
+                          </motion.div>
+                          <div>
+                            <h4 className="text-xl lg:text-2xl font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-1">
+                              {layer.name}
+                            </h4>
+                            <p className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark text-sm lg:text-base">
+                              {layer.description}
+                            </p>
+                          </div>
+                        </div>
+                        <motion.div
+                          animate={{ rotate: activeLayer === index ? 180 : 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <ArrowRight className="w-6 h-6 text-dev-text-secondary-light dark:text-dev-text-secondary-dark" />
                         </motion.div>
-                      )}
-                    </AnimatePresence>
+                      </div>
+                      
+                      <AnimatePresence>
+                        {activeLayer === index && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="mt-6 pt-6 border-t border-gray-200/50 dark:border-gray-700/50"
+                          >
+                            <p className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark mb-4 text-sm lg:text-base">
+                              {layer.details}
+                            </p>
+                            <div className="flex flex-wrap gap-2 mb-4">
+                              {layer.files.map((file) => (
+                                <span
+                                  key={file}
+                                  className="px-3 py-1 bg-blue-500/10 text-blue-500 text-xs font-mono rounded-full border border-blue-500/20"
+                                >
+                                  {file}
+                                </span>
+                              ))}
+                            </div>
+                            <motion.button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setShowCodeExample(!showCodeExample);
+                              }}
+                              className="text-blue-500 hover:text-purple-500 font-medium text-sm flex items-center transition-colors duration-300"
+                              whileHover={{ x: 5 }}
+                            >
+                              View Code Example
+                              <Code className="w-4 h-4 ml-1" />
+                            </motion.button>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
                   </motion.div>
 
                   {/* Data Flow Arrows */}
                   {index < architectureLayers.length - 1 && (
                     <motion.div
-                      className="flex justify-center my-4"
+                      className="flex justify-center my-6"
                       initial={{ opacity: 0, scale: 0 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.4, delay: index * 0.15 + 0.5 }}
                     >
                       <motion.div
-                        className="w-8 h-8 rounded-full bg-gradient-to-r from-dev-accent-blue to-dev-accent-emerald flex items-center justify-center"
+                        className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center shadow-lg"
                         animate={{ 
                           scale: [1, 1.2, 1],
                           rotate: [0, 180, 360]
                         }}
                         transition={{ 
-                          duration: 2, 
+                          duration: 3, 
                           repeat: Infinity,
                           delay: index * 0.5
                         }}
                       >
-                        <ArrowRight className="w-4 h-4 text-white" />
+                        <ArrowRight className="w-5 h-5 text-white" />
                       </motion.div>
                     </motion.div>
                   )}
@@ -391,7 +507,7 @@ export const LayerXSection: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Code Example & Features */}
+          {/* Enhanced Features & Code Example */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -406,8 +522,9 @@ export const LayerXSection: React.FC = () => {
                   initial={{ opacity: 0, y: 20, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                  className="bg-dev-card-light dark:bg-dev-card-dark rounded-2xl border border-dev-border-light dark:border-dev-border-dark p-6 shadow-2xl"
+                  className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-3xl border border-gray-200/50 dark:border-gray-700/50 p-6 shadow-2xl overflow-hidden relative"
                 >
+                  {/* Header */}
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center">
                       <div className="flex space-x-2">
@@ -421,8 +538,8 @@ export const LayerXSection: React.FC = () => {
                     </div>
                     <motion.button
                       onClick={() => setShowCodeExample(false)}
-                      className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark hover:text-dev-text-primary-light dark:hover:text-dev-text-primary-dark"
-                      whileHover={{ scale: 1.1 }}
+                      className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark hover:text-dev-text-primary-light dark:hover:text-dev-text-primary-dark transition-colors"
+                      whileHover={{ scale: 1.1, rotate: 90 }}
                       whileTap={{ scale: 0.9 }}
                     >
                       ✕
@@ -430,7 +547,7 @@ export const LayerXSection: React.FC = () => {
                   </div>
                   
                   <motion.pre
-                    className="text-sm font-mono text-dev-text-primary-light dark:text-dev-text-primary-dark overflow-x-auto bg-dev-bg-light dark:bg-dev-bg-dark p-4 rounded-lg"
+                    className="text-sm font-mono text-dev-text-primary-light dark:text-dev-text-primary-dark overflow-x-auto bg-gray-50 dark:bg-gray-800 p-4 rounded-xl border border-gray-200/50 dark:border-gray-700/50"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
@@ -441,9 +558,9 @@ export const LayerXSection: React.FC = () => {
               )}
             </AnimatePresence>
 
-            {/* Features Grid */}
+            {/* Enhanced Features Grid */}
             <div>
-              <h3 className="text-3xl font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-8">
+              <h3 className="text-3xl lg:text-4xl font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-8">
                 Key Features
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -454,23 +571,44 @@ export const LayerXSection: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="group"
+                    className="group relative"
                   >
                     <motion.div
-                      className="p-6 bg-dev-card-light/50 dark:bg-dev-card-dark/50 backdrop-blur-sm rounded-2xl border border-dev-border-light/50 dark:border-dev-border-dark/50 hover:shadow-lg transition-all duration-300"
-                      whileHover={{ y: -5, scale: 1.02 }}
+                      className="p-6 lg:p-8 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-4xl transition-all duration-500 overflow-hidden"
+                      whileHover={{ y: -8, scale: 1.02, rotateY: 5 }}
+                      style={{ transformStyle: 'preserve-3d' }}
                     >
-                      <div className="flex items-start">
-                        <div className="w-12 h-12 bg-gradient-to-r from-dev-accent-blue to-dev-accent-emerald rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
-                          <feature.icon className="w-6 h-6 text-white" />
-                        </div>
-                        <div>
-                          <h4 className="font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-2">
-                            {feature.title}
-                          </h4>
-                          <p className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark text-sm">
-                            {feature.description}
-                          </p>
+                      {/* Shimmer Effect */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100"
+                        initial={{ x: '-100%' }}
+                        whileHover={{ x: '200%' }}
+                        transition={{ duration: 1 }}
+                      />
+                      
+                      {/* Glow Effect */}
+                      <motion.div
+                        className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-3xl`}
+                        initial={false}
+                      />
+                      
+                      <div className="relative z-10">
+                        <div className="flex items-start">
+                          <motion.div
+                            className={`w-14 h-14 lg:w-16 lg:h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center mr-4 flex-shrink-0 shadow-2xl`}
+                            whileHover={{ rotate: 360, scale: 1.1 }}
+                            transition={{ duration: 0.8, type: "spring" }}
+                          >
+                            <feature.icon className="w-7 h-7 lg:w-8 lg:h-8 text-white" />
+                          </motion.div>
+                          <div>
+                            <h4 className="font-bold text-lg lg:text-xl text-dev-text-primary-light dark:text-dev-text-primary-dark mb-2">
+                              {feature.title}
+                            </h4>
+                            <p className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark text-sm lg:text-base">
+                              {feature.description}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </motion.div>
@@ -485,18 +623,26 @@ export const LayerXSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
-              className="bg-dev-card-light dark:bg-dev-card-dark rounded-2xl border border-dev-border-light dark:border-dev-border-dark p-6"
+              className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-3xl border border-gray-200/50 dark:border-gray-700/50 p-6 lg:p-8 shadow-2xl relative overflow-hidden"
             >
-              <h4 className="font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-4">
+              {/* Shimmer Effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12"
+                initial={{ x: '-100%' }}
+                animate={{ x: '200%' }}
+                transition={{ duration: 4, repeat: Infinity, repeatDelay: 3 }}
+              />
+              
+              <h4 className="font-bold text-xl lg:text-2xl text-dev-text-primary-light dark:text-dev-text-primary-dark mb-4">
                 Quick Installation
               </h4>
-              <div className="bg-dev-bg-light dark:bg-dev-bg-dark p-4 rounded-lg font-mono text-sm">
-                <div className="text-dev-accent-emerald mb-2"># Add to pubspec.yaml</div>
+              <div className="bg-gray-50 dark:bg-gray-800 p-4 lg:p-6 rounded-2xl font-mono text-sm lg:text-base border border-gray-200/50 dark:border-gray-700/50">
+                <div className="text-emerald-500 mb-2"># Add to pubspec.yaml</div>
                 <div className="text-dev-text-primary-light dark:text-dev-text-primary-dark">
                   dependencies:<br />
                   &nbsp;&nbsp;layerx_generator: ^2.0.0
                 </div>
-                <div className="text-dev-accent-emerald mt-4 mb-2"># Generate structure</div>
+                <div className="text-emerald-500 mt-4 mb-2"># Generate structure</div>
                 <div className="text-dev-text-primary-light dark:text-dev-text-primary-dark">
                   dart run layerx_generator --path .
                 </div>
@@ -505,7 +651,7 @@ export const LayerXSection: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Benefits Section */}
+        {/* Enhanced Benefits Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -513,18 +659,18 @@ export const LayerXSection: React.FC = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h3 className="text-3xl font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-8">
+          <h3 className="text-3xl lg:text-4xl font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-12">
             Why Choose LayerX?
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              'Clean separation of concerns',
-              'Testable and maintainable code',
-              'Scalable for enterprise applications',
-              'Optimized for Flutter performance'
+              { text: 'Clean separation of concerns', icon: '🎯' },
+              { text: 'Testable and maintainable code', icon: '🧪' },
+              { text: 'Scalable for enterprise applications', icon: '🚀' },
+              { text: 'Optimized for Flutter performance', icon: '⚡' }
             ].map((benefit, index) => (
               <motion.div
-                key={benefit}
+                key={benefit.text}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.9 + index * 0.1 }}
@@ -532,19 +678,53 @@ export const LayerXSection: React.FC = () => {
                 className="group"
               >
                 <motion.div
-                  className="p-6 bg-gradient-to-br from-dev-accent-blue/5 to-dev-accent-emerald/5 rounded-2xl border border-dev-accent-blue/20 hover:shadow-lg transition-all duration-300"
-                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="p-6 lg:p-8 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-4xl transition-all duration-500 overflow-hidden relative"
+                  whileHover={{ y: -8, scale: 1.02 }}
                 >
-                  <div className="flex items-center justify-center mb-4">
-                    <div className="w-3 h-3 bg-gradient-to-r from-dev-accent-blue to-dev-accent-emerald rounded-full" />
+                  {/* Shimmer Effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100"
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: '200%' }}
+                    transition={{ duration: 1 }}
+                  />
+                  
+                  <div className="relative z-10">
+                    <div className="text-3xl lg:text-4xl mb-4">{benefit.icon}</div>
+                    <p className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark font-medium text-sm lg:text-base">
+                      {benefit.text}
+                    </p>
                   </div>
-                  <p className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark font-medium">
-                    {benefit}
-                  </p>
                 </motion.div>
               </motion.div>
             ))}
           </div>
+        </motion.div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1 }}
+          viewport={{ once: true }}
+          className="text-center mt-20"
+        >
+          <motion.div
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 backdrop-blur-xl rounded-full border border-blue-500/20 relative overflow-hidden"
+            whileHover={{ scale: 1.05 }}
+          >
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12"
+              initial={{ x: '-100%' }}
+              animate={{ x: '200%' }}
+              transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
+            />
+            
+            <Award className="w-6 h-6 mr-3 text-blue-500" />
+            <span className="text-dev-text-primary-light dark:text-dev-text-primary-dark font-bold text-lg">
+              Trusted by Flutter developers worldwide
+            </span>
+          </motion.div>
         </motion.div>
       </div>
     </section>

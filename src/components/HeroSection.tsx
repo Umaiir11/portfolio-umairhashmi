@@ -31,7 +31,7 @@ export const HeroSection: React.FC = () => {
   const techStack = ['Flutter', 'Dart', 'GetX', 'Laravel', 'FastAPI', 'Firebase'];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-dev-bg-light via-dev-surface-light to-dev-bg-light dark:from-dev-bg-dark dark:via-dev-surface-dark dark:to-dev-bg-dark overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-dev-bg-light via-dev-surface-light to-dev-bg-light dark:from-dev-bg-dark dark:via-dev-surface-dark dark:to-dev-bg-dark overflow-hidden pt-24">
       <FloatingElements />
       
       {/* Animated Background Grid */}
@@ -168,7 +168,10 @@ export const HeroSection: React.FC = () => {
                 <motion.span 
                   className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark font-medium text-sm sm:text-base relative z-10"
                   whileHover={{
-                    color: role.colors,
+                    background: `linear-gradient(45deg, ${role.colors.join(', ')})`,
+                    backgroundClip: 'text',
+                    WebkitBackgroundClip: 'text',
+                    color: 'transparent',
                     transition: { duration: 1.5, repeat: Infinity }
                   }}
                 >
