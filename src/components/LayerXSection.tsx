@@ -152,26 +152,26 @@ export const LayerXSection: React.FC = () => {
   ];
 
   return (
-    <section id="layerx" className="py-32 bg-gradient-to-br from-dev-bg-light via-dev-surface-light to-dev-bg-light dark:from-dev-bg-dark dark:via-dev-surface-dark dark:to-dev-bg-dark overflow-hidden relative">
+    <section id="layerx" className="py-16 sm:py-24 md:py-32 bg-gradient-to-br from-dev-bg-light via-dev-surface-light to-dev-bg-light dark:from-dev-bg-dark dark:via-dev-surface-dark dark:to-dev-bg-dark overflow-hidden relative">
       {/* Enhanced Background Effects */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Animated Gradient Orbs */}
         {Array.from({ length: 8 }).map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-96 h-96 rounded-full opacity-10 blur-3xl"
+            className="absolute w-64 h-64 sm:w-96 sm:h-96 rounded-full opacity-10 blur-3xl"
             style={{
               background: `radial-gradient(circle, ${
                 ['#3b82f6', '#10b981', '#8b5cf6', '#f97316', '#ef4444', '#06b6d4', '#8b5cf6', '#f59e0b'][i]
               }, transparent)`
             }}
             initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
             }}
             animate={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
               scale: [1, 1.3, 1],
               opacity: [0.05, 0.2, 0.05]
             }}
@@ -189,13 +189,13 @@ export const LayerXSection: React.FC = () => {
             key={`code-${i}`}
             className="absolute text-xs font-mono text-blue-400/20 dark:text-blue-400/30"
             initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
               opacity: 0
             }}
             animate={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
               opacity: [0, 0.5, 0],
               rotate: [0, 360]
             }}
@@ -217,10 +217,10 @@ export const LayerXSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 md:mb-20"
         >
           <motion.div
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 backdrop-blur-xl rounded-full border border-blue-500/20 mb-8 relative overflow-hidden"
+            className="inline-flex items-center px-4 sm:px-6 md:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 backdrop-blur-xl rounded-full border border-blue-500/20 mb-6 sm:mb-8 relative overflow-hidden"
             initial={{ scale: 0.8, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
@@ -234,10 +234,10 @@ export const LayerXSection: React.FC = () => {
               transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
             />
             
-            <Package className="w-6 h-6 mr-3 text-blue-500" />
-            <span className="text-blue-500 font-bold text-lg">Open Source Innovation</span>
+            <Package className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-blue-500" />
+            <span className="text-blue-500 font-bold text-sm sm:text-base md:text-lg">Open Source Innovation</span>
             <motion.div
-              className="ml-3 w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+              className="ml-2 sm:ml-3 w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
               animate={{ 
                 scale: [1, 1.5, 1], 
                 opacity: [1, 0.5, 1],
@@ -248,7 +248,7 @@ export const LayerXSection: React.FC = () => {
           </motion.div>
           
           <motion.h2
-            className="text-5xl md:text-7xl font-black mb-8"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 sm:mb-8 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
@@ -263,7 +263,7 @@ export const LayerXSection: React.FC = () => {
           </motion.h2>
 
           <motion.p
-            className="text-xl md:text-2xl text-dev-text-secondary-light dark:text-dev-text-secondary-dark max-w-4xl mx-auto mb-12 leading-relaxed"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-dev-text-secondary-light dark:text-dev-text-secondary-dark max-w-4xl mx-auto mb-8 sm:mb-12 leading-relaxed px-4 sm:px-0"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
@@ -274,7 +274,7 @@ export const LayerXSection: React.FC = () => {
 
           {/* Enhanced Stats Row */}
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12"
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-8 sm:mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
@@ -289,7 +289,7 @@ export const LayerXSection: React.FC = () => {
                 whileHover={{ scale: 1.05, y: -5 }}
               >
                 <motion.div
-                  className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl p-6 lg:p-8 rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-4xl transition-all duration-500 relative overflow-hidden"
+                  className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-4xl transition-all duration-500 relative overflow-hidden"
                   whileHover={{ rotateY: 5, rotateX: 5 }}
                   style={{ transformStyle: 'preserve-3d' }}
                 >
@@ -303,15 +303,15 @@ export const LayerXSection: React.FC = () => {
                   
                   {/* Glow Effect */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"
+                    className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl sm:rounded-3xl"
                     initial={false}
                   />
                   
                   <div className="relative z-10">
-                    <div className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                    <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-1 sm:mb-2">
                       {stat.value}
                     </div>
-                    <div className="text-sm lg:text-base text-dev-text-secondary-light dark:text-dev-text-secondary-dark font-medium">
+                    <div className="text-xs sm:text-sm lg:text-base text-dev-text-secondary-light dark:text-dev-text-secondary-dark font-medium">
                       {stat.label}
                     </div>
                   </div>
@@ -324,17 +324,17 @@ export const LayerXSection: React.FC = () => {
             href="https://pub.dev/packages/layerx_generator"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 relative overflow-hidden"
+            className="group inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 relative overflow-hidden"
             whileHover={{ scale: 1.05, y: -3 }}
             whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
           >
-            <Package className="w-6 h-6 mr-3" />
-            <span className="font-mono">layerx_generator: ^2.0.0</span>
-            <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
-            <ExternalLink className="w-4 h-4 ml-2 opacity-70" />
+            <Package className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
+            <span className="font-mono text-sm sm:text-base">layerx_generator: ^2.0.0</span>
+            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 sm:ml-3 group-hover:translate-x-1 transition-transform" />
+            <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2 opacity-70" />
             
             {/* Shine Effect */}
             <motion.div
@@ -347,7 +347,7 @@ export const LayerXSection: React.FC = () => {
         </motion.div>
 
         {/* Architecture Flow & Features */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 items-start mb-20">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start mb-12 sm:mb-16 md:mb-20">
           {/* Interactive Architecture Layers */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -356,13 +356,13 @@ export const LayerXSection: React.FC = () => {
             viewport={{ once: true }}
             className="relative"
           >
-            <h3 className="text-3xl lg:text-4xl font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-8 text-center">
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-6 sm:mb-8 text-center">
               Architecture Flow
             </h3>
             
-            <div className="space-y-6 relative">
+            <div className="space-y-4 sm:space-y-6 relative">
               {/* Connection Lines */}
-              <svg className="absolute left-8 top-20 w-0.5 h-full z-0" style={{ height: 'calc(100% - 5rem)' }}>
+              <svg className="absolute left-6 sm:left-8 top-16 sm:top-20 w-0.5 h-full z-0" style={{ height: 'calc(100% - 5rem)' }}>
                 <motion.line
                   x1="0" y1="0" x2="0" y2="100%"
                   stroke="url(#gradient)"
@@ -391,7 +391,7 @@ export const LayerXSection: React.FC = () => {
                   className="relative z-10"
                 >
                   <motion.div
-                    className={`group cursor-pointer p-6 lg:p-8 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-4xl transition-all duration-500 overflow-hidden ${
+                    className={`group cursor-pointer p-4 sm:p-6 lg:p-8 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-4xl transition-all duration-500 overflow-hidden ${
                       activeLayer === index ? 'ring-2 ring-blue-500 shadow-4xl' : ''
                     }`}
                     whileHover={{ scale: 1.02, x: 10, rotateY: 5 }}
@@ -416,17 +416,17 @@ export const LayerXSection: React.FC = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center">
                           <motion.div 
-                            className={`w-16 h-16 lg:w-20 lg:h-20 rounded-2xl bg-gradient-to-r ${layer.color} flex items-center justify-center mr-4 lg:mr-6 shadow-2xl`}
+                            className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 xl:w-20 xl:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-r ${layer.color} flex items-center justify-center mr-3 sm:mr-4 lg:mr-6 shadow-2xl`}
                             whileHover={{ rotate: 360, scale: 1.1 }}
                             transition={{ duration: 0.8, type: "spring" }}
                           >
-                            <layer.icon className="w-8 h-8 lg:w-10 lg:h-10 text-white" />
+                            <layer.icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 xl:w-10 xl:h-10 text-white" />
                           </motion.div>
                           <div>
-                            <h4 className="text-xl lg:text-2xl font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-1">
+                            <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-1">
                               {layer.name}
                             </h4>
-                            <p className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark text-sm lg:text-base">
+                            <p className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark text-sm sm:text-base">
                               {layer.description}
                             </p>
                           </div>
@@ -435,7 +435,7 @@ export const LayerXSection: React.FC = () => {
                           animate={{ rotate: activeLayer === index ? 180 : 0 }}
                           transition={{ duration: 0.3 }}
                         >
-                          <ArrowRight className="w-6 h-6 text-dev-text-secondary-light dark:text-dev-text-secondary-dark" />
+                          <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-dev-text-secondary-light dark:text-dev-text-secondary-dark" />
                         </motion.div>
                       </div>
                       
@@ -446,16 +446,16 @@ export const LayerXSection: React.FC = () => {
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="mt-6 pt-6 border-t border-gray-200/50 dark:border-gray-700/50"
+                            className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-200/50 dark:border-gray-700/50"
                           >
-                            <p className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark mb-4 text-sm lg:text-base">
+                            <p className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark mb-3 sm:mb-4 text-sm sm:text-base">
                               {layer.details}
                             </p>
-                            <div className="flex flex-wrap gap-2 mb-4">
+                            <div className="flex flex-wrap gap-2 mb-3 sm:mb-4">
                               {layer.files.map((file) => (
                                 <span
                                   key={file}
-                                  className="px-3 py-1 bg-blue-500/10 text-blue-500 text-xs font-mono rounded-full border border-blue-500/20"
+                                  className="px-2 sm:px-3 py-1 bg-blue-500/10 text-blue-500 text-xs font-mono rounded-full border border-blue-500/20"
                                 >
                                   {file}
                                 </span>
@@ -481,13 +481,13 @@ export const LayerXSection: React.FC = () => {
                   {/* Data Flow Arrows */}
                   {index < architectureLayers.length - 1 && (
                     <motion.div
-                      className="flex justify-center my-6"
+                      className="flex justify-center my-4 sm:my-6"
                       initial={{ opacity: 0, scale: 0 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.4, delay: index * 0.15 + 0.5 }}
                     >
                       <motion.div
-                        className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center shadow-lg"
+                        className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center shadow-lg"
                         animate={{ 
                           scale: [1, 1.2, 1],
                           rotate: [0, 180, 360]
@@ -498,7 +498,7 @@ export const LayerXSection: React.FC = () => {
                           delay: index * 0.5
                         }}
                       >
-                        <ArrowRight className="w-5 h-5 text-white" />
+                        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                       </motion.div>
                     </motion.div>
                   )}
@@ -513,7 +513,7 @@ export const LayerXSection: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-6 sm:space-y-8"
           >
             {/* Code Example */}
             <AnimatePresence>
@@ -522,17 +522,17 @@ export const LayerXSection: React.FC = () => {
                   initial={{ opacity: 0, y: 20, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                  className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-3xl border border-gray-200/50 dark:border-gray-700/50 p-6 shadow-2xl overflow-hidden relative"
+                  className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-gray-200/50 dark:border-gray-700/50 p-4 sm:p-6 shadow-2xl overflow-hidden relative"
                 >
                   {/* Header */}
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
                     <div className="flex items-center">
-                      <div className="flex space-x-2">
-                        <div className="w-3 h-3 bg-red-500 rounded-full" />
-                        <div className="w-3 h-3 bg-yellow-500 rounded-full" />
-                        <div className="w-3 h-3 bg-green-500 rounded-full" />
+                      <div className="flex space-x-1.5 sm:space-x-2">
+                        <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-red-500 rounded-full" />
+                        <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-yellow-500 rounded-full" />
+                        <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-green-500 rounded-full" />
                       </div>
-                      <span className="ml-4 text-sm text-dev-text-secondary-light dark:text-dev-text-secondary-dark font-mono">
+                      <span className="ml-3 sm:ml-4 text-xs sm:text-sm text-dev-text-secondary-light dark:text-dev-text-secondary-dark font-mono">
                         {architectureLayers[activeLayer].files[0]}
                       </span>
                     </div>
@@ -547,7 +547,7 @@ export const LayerXSection: React.FC = () => {
                   </div>
                   
                   <motion.pre
-                    className="text-sm font-mono text-dev-text-primary-light dark:text-dev-text-primary-dark overflow-x-auto bg-gray-50 dark:bg-gray-800 p-4 rounded-xl border border-gray-200/50 dark:border-gray-700/50"
+                    className="text-xs sm:text-sm font-mono text-dev-text-primary-light dark:text-dev-text-primary-dark overflow-x-auto bg-gray-50 dark:bg-gray-800 p-3 sm:p-4 rounded-lg sm:rounded-xl border border-gray-200/50 dark:border-gray-700/50"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
@@ -560,10 +560,10 @@ export const LayerXSection: React.FC = () => {
 
             {/* Enhanced Features Grid */}
             <div>
-              <h3 className="text-3xl lg:text-4xl font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-8">
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-6 sm:mb-8">
                 Key Features
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 {features.map((feature, index) => (
                   <motion.div
                     key={feature.title}
@@ -574,7 +574,7 @@ export const LayerXSection: React.FC = () => {
                     className="group relative"
                   >
                     <motion.div
-                      className="p-6 lg:p-8 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-4xl transition-all duration-500 overflow-hidden"
+                      className="p-4 sm:p-6 lg:p-8 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-4xl transition-all duration-500 overflow-hidden"
                       whileHover={{ y: -8, scale: 1.02, rotateY: 5 }}
                       style={{ transformStyle: 'preserve-3d' }}
                     >
@@ -588,24 +588,24 @@ export const LayerXSection: React.FC = () => {
                       
                       {/* Glow Effect */}
                       <motion.div
-                        className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-3xl`}
+                        className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl sm:rounded-3xl`}
                         initial={false}
                       />
                       
                       <div className="relative z-10">
                         <div className="flex items-start">
                           <motion.div
-                            className={`w-14 h-14 lg:w-16 lg:h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center mr-4 flex-shrink-0 shadow-2xl`}
+                            className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-r ${feature.gradient} rounded-xl sm:rounded-2xl flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0 shadow-2xl`}
                             whileHover={{ rotate: 360, scale: 1.1 }}
                             transition={{ duration: 0.8, type: "spring" }}
                           >
-                            <feature.icon className="w-7 h-7 lg:w-8 lg:h-8 text-white" />
+                            <feature.icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" />
                           </motion.div>
                           <div>
-                            <h4 className="font-bold text-lg lg:text-xl text-dev-text-primary-light dark:text-dev-text-primary-dark mb-2">
+                            <h4 className="font-bold text-base sm:text-lg lg:text-xl text-dev-text-primary-light dark:text-dev-text-primary-dark mb-2">
                               {feature.title}
                             </h4>
-                            <p className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark text-sm lg:text-base">
+                            <p className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark text-sm sm:text-base">
                               {feature.description}
                             </p>
                           </div>
@@ -623,7 +623,7 @@ export const LayerXSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
-              className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-3xl border border-gray-200/50 dark:border-gray-700/50 p-6 lg:p-8 shadow-2xl relative overflow-hidden"
+              className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-gray-200/50 dark:border-gray-700/50 p-4 sm:p-6 lg:p-8 shadow-2xl relative overflow-hidden"
             >
               {/* Shimmer Effect */}
               <motion.div
@@ -633,10 +633,10 @@ export const LayerXSection: React.FC = () => {
                 transition={{ duration: 4, repeat: Infinity, repeatDelay: 3 }}
               />
               
-              <h4 className="font-bold text-xl lg:text-2xl text-dev-text-primary-light dark:text-dev-text-primary-dark mb-4">
+              <h4 className="font-bold text-lg sm:text-xl lg:text-2xl text-dev-text-primary-light dark:text-dev-text-primary-dark mb-3 sm:mb-4">
                 Quick Installation
               </h4>
-              <div className="bg-gray-50 dark:bg-gray-800 p-4 lg:p-6 rounded-2xl font-mono text-sm lg:text-base border border-gray-200/50 dark:border-gray-700/50">
+              <div className="bg-gray-50 dark:bg-gray-800 p-3 sm:p-4 lg:p-6 rounded-xl sm:rounded-2xl font-mono text-xs sm:text-sm lg:text-base border border-gray-200/50 dark:border-gray-700/50">
                 <div className="text-emerald-500 mb-2"># Add to pubspec.yaml</div>
                 <div className="text-dev-text-primary-light dark:text-dev-text-primary-dark">
                   dependencies:<br />
@@ -659,10 +659,10 @@ export const LayerXSection: React.FC = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h3 className="text-3xl lg:text-4xl font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-12">
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-8 sm:mb-12">
             Why Choose LayerX?
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {[
               { text: 'Clean separation of concerns', icon: '🎯' },
               { text: 'Testable and maintainable code', icon: '🧪' },
@@ -678,7 +678,7 @@ export const LayerXSection: React.FC = () => {
                 className="group"
               >
                 <motion.div
-                  className="p-6 lg:p-8 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-4xl transition-all duration-500 overflow-hidden relative"
+                  className="p-4 sm:p-6 lg:p-8 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-4xl transition-all duration-500 overflow-hidden relative"
                   whileHover={{ y: -8, scale: 1.02 }}
                 >
                   {/* Shimmer Effect */}
@@ -690,8 +690,8 @@ export const LayerXSection: React.FC = () => {
                   />
                   
                   <div className="relative z-10">
-                    <div className="text-3xl lg:text-4xl mb-4">{benefit.icon}</div>
-                    <p className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark font-medium text-sm lg:text-base">
+                    <div className="text-2xl sm:text-3xl lg:text-4xl mb-3 sm:mb-4">{benefit.icon}</div>
+                    <p className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark font-medium text-sm sm:text-base">
                       {benefit.text}
                     </p>
                   </div>
@@ -707,10 +707,10 @@ export const LayerXSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1 }}
           viewport={{ once: true }}
-          className="text-center mt-20"
+          className="text-center mt-12 sm:mt-16 md:mt-20"
         >
           <motion.div
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 backdrop-blur-xl rounded-full border border-blue-500/20 relative overflow-hidden"
+            className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 backdrop-blur-xl rounded-full border border-blue-500/20 relative overflow-hidden"
             whileHover={{ scale: 1.05 }}
           >
             <motion.div
@@ -720,8 +720,8 @@ export const LayerXSection: React.FC = () => {
               transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
             />
             
-            <Award className="w-6 h-6 mr-3 text-blue-500" />
-            <span className="text-dev-text-primary-light dark:text-dev-text-primary-dark font-bold text-lg">
+            <Award className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3 text-blue-500" />
+            <span className="text-dev-text-primary-light dark:text-dev-text-primary-dark font-bold text-sm sm:text-base md:text-lg">
               Trusted by Flutter developers worldwide
             </span>
           </motion.div>

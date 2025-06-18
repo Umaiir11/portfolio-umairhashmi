@@ -20,10 +20,10 @@ export const FloatingElements: React.FC = () => {
   ];
 
   const geometricShapes = [
-    { shape: 'circle', size: 'w-3 h-3' },
-    { shape: 'square', size: 'w-2 h-2' },
-    { shape: 'triangle', size: 'w-4 h-4' },
-    { shape: 'diamond', size: 'w-3 h-3' }
+    { shape: 'circle', size: 'w-2 h-2 sm:w-3 sm:h-3' },
+    { shape: 'square', size: 'w-1.5 h-1.5 sm:w-2 sm:h-2' },
+    { shape: 'triangle', size: 'w-3 h-3 sm:w-4 sm:h-4' },
+    { shape: 'diamond', size: 'w-2 h-2 sm:w-3 sm:h-3' }
   ];
 
   return (
@@ -35,13 +35,13 @@ export const FloatingElements: React.FC = () => {
           className="absolute text-xs font-mono text-dev-accent-blue/20 dark:text-dev-accent-blue/30 whitespace-nowrap"
           initial={{ 
             x: -200,
-            y: Math.random() * window.innerHeight,
+            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
             opacity: 0,
             rotate: Math.random() * 360
           }}
           animate={{
-            x: window.innerWidth + 200,
-            y: Math.random() * window.innerHeight,
+            x: (typeof window !== 'undefined' ? window.innerWidth : 1200) + 200,
+            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
             opacity: [0, 0.7, 0.7, 0],
             rotate: Math.random() * 360 + 180
           }}
@@ -68,13 +68,13 @@ export const FloatingElements: React.FC = () => {
             transform: geometricShapes[i % geometricShapes.length].shape === 'diamond' ? 'rotate(45deg)' : 'none'
           }}
           initial={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
+            x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
             scale: 0
           }}
           animate={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
+            x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
             scale: [0, 1, 1.5, 1, 0],
             rotate: [0, 180, 360]
           }}
@@ -92,7 +92,7 @@ export const FloatingElements: React.FC = () => {
         {Array.from({ length: 50 }).map((_, i) => (
           <motion.div
             key={`dot-${i}`}
-            className="absolute w-1 h-1 bg-dev-accent-blue rounded-full"
+            className="absolute w-0.5 h-0.5 sm:w-1 sm:h-1 bg-dev-accent-blue rounded-full"
             style={{
               left: `${(i % 10) * 10}%`,
               top: `${Math.floor(i / 10) * 20}%`
@@ -114,17 +114,17 @@ export const FloatingElements: React.FC = () => {
       {Array.from({ length: 5 }).map((_, i) => (
         <motion.div
           key={`orb-${i}`}
-          className="absolute w-32 h-32 rounded-full opacity-5"
+          className="absolute w-24 h-24 sm:w-32 sm:h-32 rounded-full opacity-5"
           style={{
             background: `radial-gradient(circle, ${['#3b82f6', '#10b981', '#8b5cf6', '#f97316', '#ef4444'][i]}, transparent)`
           }}
           initial={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
+            x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
           }}
           animate={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
+            x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
             scale: [1, 1.5, 1],
           }}
           transition={{
