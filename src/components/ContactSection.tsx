@@ -451,11 +451,9 @@ export const ContactSection: React.FC = () => {
           className="text-center mt-20 pt-8 border-t border-gray-200/50 dark:border-gray-700/50"
         >
           <p className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark text-lg">
-            © 2025 Umair Hashmi. Built with React, TypeScript & Framer Motion.
+            © 2025 Umair Hashmi. Built with <3.
           </p>
-          <p className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark mt-2">
-            Crafting exceptional digital experiences, one line of code at a time.
-          </p>
+          
         </motion.div>
       </div>
     </section>
