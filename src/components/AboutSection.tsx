@@ -45,14 +45,14 @@ export const AboutSection: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-32 bg-gradient-to-br from-dev-surface-light via-dev-bg-light to-dev-surface-light dark:from-dev-surface-dark dark:via-dev-bg-dark dark:to-dev-surface-dark relative overflow-hidden">
+    <section id="about" className="py-16 sm:py-20 md:py-24 lg:py-32 bg-gradient-to-br from-dev-surface-light via-dev-bg-light to-dev-surface-light dark:from-dev-surface-dark dark:via-dev-bg-dark dark:to-dev-surface-dark relative overflow-hidden">
       {/* Enhanced Background Effects */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Animated Gradient Orbs */}
         {Array.from({ length: 6 }).map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-96 h-96 rounded-full opacity-20 blur-3xl"
+            className="absolute w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full opacity-20 blur-3xl"
             style={{
               background: `radial-gradient(circle, ${
                 ['#3b82f6', '#10b981', '#8b5cf6', '#f97316', '#ef4444', '#06b6d4'][i]
@@ -80,7 +80,7 @@ export const AboutSection: React.FC = () => {
         {Array.from({ length: 20 }).map((_, i) => (
           <motion.div
             key={`particle-${i}`}
-            className="absolute w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-60"
+            className="absolute w-1 h-1 sm:w-1.5 sm:h-1.5 lg:w-2 lg:h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-60"
             initial={{
               x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
               y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
@@ -99,9 +99,9 @@ export const AboutSection: React.FC = () => {
         ))}
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 relative">
         {/* Header Section */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -110,7 +110,7 @@ export const AboutSection: React.FC = () => {
           >
             {/* Enhanced Badge */}
             <motion.div
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 backdrop-blur-xl rounded-full border border-blue-500/20 mb-8 relative overflow-hidden"
+              className="inline-flex items-center px-4 sm:px-6 lg:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 backdrop-blur-xl rounded-full border border-blue-500/20 mb-6 sm:mb-8 relative overflow-hidden"
               initial={{ scale: 0.8, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
@@ -124,10 +124,10 @@ export const AboutSection: React.FC = () => {
                 transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
               />
               
-              <Sparkles className="w-6 h-6 mr-3 text-blue-500" />
-              <span className="text-blue-500 font-bold text-lg">Professional Excellence</span>
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 mr-2 sm:mr-3 text-blue-500" />
+              <span className="text-blue-500 font-bold text-sm sm:text-base lg:text-lg">Professional Excellence</span>
               <motion.div
-                className="ml-3 w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+                className="ml-2 sm:ml-3 w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
                 animate={{ 
                   scale: [1, 1.5, 1], 
                   opacity: [1, 0.5, 1],
@@ -138,7 +138,7 @@ export const AboutSection: React.FC = () => {
             </motion.div>
 
             <motion.h2
-              className="text-4xl md:text-6xl lg:text-7xl font-black mb-8"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 sm:mb-8"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
@@ -153,7 +153,7 @@ export const AboutSection: React.FC = () => {
             </motion.h2>
 
             <motion.p
-              className="text-lg md:text-xl lg:text-2xl text-dev-text-secondary-light dark:text-dev-text-secondary-dark leading-relaxed max-w-4xl mx-auto"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-dev-text-secondary-light dark:text-dev-text-secondary-dark leading-relaxed max-w-4xl mx-auto px-2 sm:px-4 lg:px-0"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
@@ -165,7 +165,7 @@ export const AboutSection: React.FC = () => {
         </div>
 
         {/* Modern Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
           {highlights.map((highlight, index) => (
             <motion.div
               key={highlight.title}
@@ -176,7 +176,7 @@ export const AboutSection: React.FC = () => {
               className="group relative"
             >
               <motion.div
-                className="relative h-full p-8 lg:p-10 bg-white/80 dark:bg-gray-900/80 backdrop-blur-2xl rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-4xl transition-all duration-700 overflow-hidden"
+                className="relative h-full p-6 sm:p-8 lg:p-10 bg-white/80 dark:bg-gray-900/80 backdrop-blur-2xl rounded-2xl sm:rounded-3xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-4xl transition-all duration-700 overflow-hidden"
                 whileHover={{ 
                   y: -12, 
                   scale: 1.02,
@@ -225,28 +225,32 @@ export const AboutSection: React.FC = () => {
 
                 <div className="relative z-10">
                   {/* Header */}
-                  <div className="flex items-start justify-between mb-6">
+                  <div className="flex items-start justify-between mb-4 sm:mb-6">
+                    <div className="flex items-center">
+                      <motion.div
+                        className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 xl:w-20 xl:h-20 rounded-xl sm:rounded-2xl bg-gradient-to-r ${highlight.iconBg} flex items-center justify-center mr-3 sm:mr-4 lg:mr-6 shadow-2xl`}
+                        whileHover={{ rotate: 360, scale: 1.1 }}
+                        transition={{ duration: 0.8, type: "spring" }}
+                      >
+                        <highlight.icon className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 xl:w-10 xl:h-10 text-white" />
+                      </motion.div>
+                      <div>
+                        <h4 className="text-lg sm:text-xl lg:text-2xl font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-1">
+                          {highlight.title}
+                        </h4>
+                        <p className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark text-sm sm:text-base">
+                          {highlight.description}
+                        </p>
+                      </div>
+                    </div>
                     <motion.div
-                      className={`w-16 h-16 lg:w-20 lg:h-20 rounded-2xl bg-gradient-to-r ${highlight.iconBg} flex items-center justify-center shadow-2xl`}
-                      whileHover={{ 
-                        rotate: 360, 
-                        scale: 1.1,
-                        boxShadow: '0 20px 40px rgba(0,0,0,0.3)'
-                      }}
-                      transition={{ duration: 0.8, type: "spring" }}
-                    >
-                      <highlight.icon className="w-8 h-8 lg:w-10 lg:h-10 text-white" />
-                    </motion.div>
-
-                    {/* Stats Badge */}
-                    <motion.div
-                      className="px-4 py-2 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 rounded-full border border-gray-300/50 dark:border-gray-600/50"
+                      className="px-3 sm:px-4 py-1.5 sm:py-2 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 rounded-full border border-gray-300/50 dark:border-gray-600/50"
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.5 + index * 0.1 }}
                       whileHover={{ scale: 1.05 }}
                     >
-                      <span className="text-sm font-bold text-gray-700 dark:text-gray-300">
+                      <span className="text-xs sm:text-sm font-bold text-gray-700 dark:text-gray-300">
                         {highlight.stats}
                       </span>
                     </motion.div>
@@ -254,7 +258,7 @@ export const AboutSection: React.FC = () => {
 
                   {/* Content */}
                   <motion.h3
-                    className="text-2xl lg:text-3xl font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text transition-all duration-500"
+                    className="text-xl sm:text-2xl lg:text-3xl font-bold text-dev-text-primary-light dark:text-dev-text-primary-dark mb-3 sm:mb-4 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text transition-all duration-500"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.6 + index * 0.1 }}
@@ -263,7 +267,7 @@ export const AboutSection: React.FC = () => {
                   </motion.h3>
 
                   <motion.p
-                    className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark leading-relaxed mb-6 text-base lg:text-lg"
+                    className="text-dev-text-secondary-light dark:text-dev-text-secondary-dark leading-relaxed mb-4 sm:mb-6 text-sm sm:text-base lg:text-lg"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.7 + index * 0.1 }}
@@ -277,20 +281,20 @@ export const AboutSection: React.FC = () => {
                       href={highlight.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 group/btn relative overflow-hidden"
+                      className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 group/btn relative overflow-hidden"
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.8 + index * 0.1 }}
                     >
-                      <span className="mr-2 relative z-10">Explore Package</span>
+                      <span className="mr-2 relative z-10 text-sm sm:text-base">Explore Package</span>
                       <motion.div
                         animate={{ x: [0, 5, 0] }}
                         transition={{ duration: 1.5, repeat: Infinity }}
                         className="relative z-10"
                       >
-                        <ArrowRight className="w-5 h-5" />
+                        <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                       </motion.div>
                       
                       {/* Button Shimmer */}
@@ -304,12 +308,12 @@ export const AboutSection: React.FC = () => {
                   )}
 
                   {/* Decorative Elements */}
-                  <div className="absolute top-4 right-4 opacity-20 group-hover:opacity-40 transition-opacity duration-500">
+                  <div className="absolute top-3 sm:top-4 right-3 sm:right-4 opacity-20 group-hover:opacity-40 transition-opacity duration-500">
                     <motion.div
                       animate={{ rotate: 360 }}
                       transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                     >
-                      <Star className="w-6 h-6 text-blue-500" />
+                      <Star className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-blue-500" />
                     </motion.div>
                   </div>
                 </div>
@@ -330,10 +334,10 @@ export const AboutSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mt-20"
+          className="text-center mt-12 sm:mt-16 lg:mt-20"
         >
           <motion.div
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 backdrop-blur-xl rounded-full border border-blue-500/20 relative overflow-hidden"
+            className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 backdrop-blur-xl rounded-full border border-blue-500/20 relative overflow-hidden"
             whileHover={{ scale: 1.05 }}
           >
             <motion.div
@@ -343,8 +347,8 @@ export const AboutSection: React.FC = () => {
               transition={{ duration: 3, repeat: Infinity, repeatDelay: 2 }}
             />
             
-            <Star className="w-6 h-6 mr-3 text-blue-500" />
-            <span className="text-dev-text-primary-light dark:text-dev-text-primary-dark font-bold text-lg">
+            <Star className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 mr-2 sm:mr-3 text-blue-500" />
+            <span className="text-dev-text-primary-light dark:text-dev-text-primary-dark font-bold text-sm sm:text-base lg:text-lg">
               Ready to build your next big idea together
             </span>
           </motion.div>

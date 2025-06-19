@@ -20,10 +20,10 @@ export const FloatingElements: React.FC = () => {
   ];
 
   const geometricShapes = [
-    { shape: 'circle', size: 'w-2 h-2 sm:w-3 sm:h-3' },
-    { shape: 'square', size: 'w-1.5 h-1.5 sm:w-2 sm:h-2' },
-    { shape: 'triangle', size: 'w-3 h-3 sm:w-4 sm:h-4' },
-    { shape: 'diamond', size: 'w-2 h-2 sm:w-3 sm:h-3' }
+    { shape: 'circle', size: 'w-1.5 h-1.5 sm:w-2 sm:h-2 lg:w-3 lg:h-3' },
+    { shape: 'square', size: 'w-1 h-1 sm:w-1.5 sm:h-1.5 lg:w-2 lg:h-2' },
+    { shape: 'triangle', size: 'w-2 h-2 sm:w-3 sm:h-3 lg:w-4 lg:h-4' },
+    { shape: 'diamond', size: 'w-1.5 h-1.5 sm:w-2 sm:h-2 lg:w-3 lg:h-3' }
   ];
 
   return (
@@ -114,7 +114,7 @@ export const FloatingElements: React.FC = () => {
       {Array.from({ length: 5 }).map((_, i) => (
         <motion.div
           key={`orb-${i}`}
-          className="absolute w-24 h-24 sm:w-32 sm:h-32 rounded-full opacity-5"
+          className="absolute w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 rounded-full opacity-5"
           style={{
             background: `radial-gradient(circle, ${['#3b82f6', '#10b981', '#8b5cf6', '#f97316', '#ef4444'][i]}, transparent)`
           }}
